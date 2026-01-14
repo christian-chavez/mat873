@@ -1,0 +1,59 @@
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{
+	xcolor,
+	amsmath,
+	amsthm,
+	amsfonts,
+	amssymb,
+    mathrsfs,
+	enumitem,
+    mlmodern,
+    indentfirst,
+    graphicx,
+    transparent,
+    pdfpages,
+    xifthen,
+    float,
+    import,
+    csquotes,
+}
+\geometry{margin=1.25in}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Théorème}
+\newtheorem{df}{Définition}
+\newtheorem{prob}{Problème}
+\newtheorem{ex}{Exemple}
+\newtheorem{rmk}{Remarque}
+
+
+
+% shorcuts
+\newcommand{\incsvg}[2]{%
+    \def\svgwidth{#1\columnwidth}
+    \graphicspath{{images/}}
+    \input{images/#2.pdf_tex}
+}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\bd}{bd}
+\DeclareMathOperator{\spn}{span}
+
+% remove indentation at the begining of theorems 
+% \makeatletter
+% \let\sv@thm\@thm
+% \def\@thm{\let\indent\relax\sv@thm}
+% \makeatother
+
+\usepackage[
+    style=numeric, 
+    sorting=nyt,
+    backend=biber,
+]{biblatex}
+\addbibresource{biblio.bib}
+\usepackage[bookmarks,hidelinks]{hyperref}

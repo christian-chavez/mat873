@@ -1,0 +1,296 @@
+\chapter{Des choses de base}
+
+\red{Lecture 2026-01-08}
+
+\section{Motivation}
+
+Soit   \(K\) un espace topologique.
+
+\subsection{Les groupes d'homologie}
+
+On voudrait compter les trous d'un espace topologique quelconque.
+Par exemple, 
+
+\begin{itemize}
+\item la ligne réel n'a pas de trous
+\item si on prendre un segment de recte et join the bouts, on obtient un circle. il n'y a pas de trou dans le borde (otherwise it is not a circle). mais il enclose un trou.
+\item 
+\item la sphère n'a pas de trous dans la surface (otgerwise is not an sphère), mais elle a un trou dedans, mais ce different de le trou que le circle enclose
+\item la sphère moins un disque a deux trous. pas vraiment. 
+\item la figure du \texttt{8} a deux trous.i
+\end{itemize}
+
+
+\begin{figure}[H]
+    \centering
+    \incsvg{0.25}{efwjbjkwf}\quad
+    \incsvg{0.25}{sphere}\quad
+    \incsvg{0.25}{sphere-trou}
+    %\caption{}
+    %\label{fig:efwjbjkwf}
+\end{figure}
+
+\(K_1\) est la ligne seulement, pas l'air qu'elle contient.
+Sino, on aurait peint l'interiéur.
+
+
+Pour illustrer, on note par 
+\(H_0\) le nombre de composantes conexes,
+\(H_1\) le nombre de trous de dimension 1, i.e., trous planars,
+\(H_2\) le nombre de trous bidimensionals, etc.
+
+Alors dans les figures ci-dessus, on a 
+\begin{alignat*}{3}
+H_0(K_1) &= \Z,\quad  && H_1(K_1) = \Z^4,\quad  && H_2(K_1) = 0\\
+H_0(K_2) &= \Z,\quad  && H_1(K_2) = \Z,\quad  && H_2(K_2) =\Z\\
+H_0(K_3) &= \Z,\quad  && H_1(K_3) = 0,\quad  && H_2(K_3) = 0.
+\end{alignat*}
+
+We ``encode'' the number of conected components in the exponent.
+Notice that we always have \(H_0\geq 1\).
+
+
+On va voir deux théorèmes importants :
+
+\begin{thm}
+Si \(K\cong K'\), 
+alors \(H_p(K)\cong H_p(K')\).
+\end{thm}
+
+\begin{thm}
+Tout espace topologique est isomorphe à un complexe simplicial.
+\red{est-ce que ceci est vrai?}
+\end{thm}
+
+BUT : Définir \emph{complexe simplicial}.
+
+
+\begin{df}
+Un \(n\)-simplex \(\sigma\) est 
+\end{df}
+
+\begin{df}
+On dit que \(n\) points \(u_1, \dots, u_n\in \R^d\)
+sont \textbf{linéairement independants}
+si 
+$$
+\dim \spn \left\{ u_1, \dots, u_n \right\} = n
+$$
+\end{df}
+
+Il n'est pas necesaire d'ajouter la condition \(n\leqslant d\)
+dans la définition.
+
+
+\begin{df}
+On dit que \(n+1\) points \(u_0, \dots, u_n\in \R^d\)
+sont \textbf{affinement independants}
+si  \(u_0 - u_1, \dots, u_0 - u_n\)
+sont linéairement independants
+\end{df}
+
+La combinaison convexe de   \(u_1, \dots, u_n\in \R^d\) \red{they need not be aff.indep.} affinement independants
+est 
+\red{give intuition}
+\[
+\conv\{u_0, \dots, u_n\}
+=
+\left\{ 
+\sum_{i=0}^{n}\lambda_iu_i \ \bigg|\  \lambda_i\geq 0 \text{ et } \lambda_1+ \cdots + \lambda_n =1
+\right\}
+\]
+
+\begin{df}
+Un  \(n\)-\textbf{simplex}
+est la combinaison convexe de d'un ensemble fini de points affinement independants.
+\end{df}
+
+\begin{ex}
+\begin{enumerate}[label=(\roman*)]
+\item Pour \(n=0\), on a \(\sigma = \conv\{u_0\} = \{u_0\}\), un singleton.
+\item segment
+\item triangle
+\item tetraèdre
+\end{enumerate}
+\end{ex}
+
+Soit \(\sigma = \conv\{ u_0, \dots, u_n \}\)
+un \(n\)-simplex 
+et 
+\(S\subset \{ u_0, \dots, u_n \}\) une partie non vide.
+Alors \(\tau = \conv S\) est un simplex de dimension \(|S| - 1 \).
+On dit que \(\tau\) est une face de \(\sigma\).
+On écrit \(\tau\leq \sigma\).
+
+\begin{rmk}
+On dit  que \(\tau\) est \textbf{propre} si \(\tau\neq \sigma\).
+\end{rmk}
+
+\begin{ex}
+Soient \(u_0, \dots, u_3\) affinement independants.
+Alors \(\sigma = \conv\{u_0, \dots, u_4\}\)
+est un tetraèdre
+et \(\sigma = \conv\{u_0, \dots, u_3\}\) 
+est un triangle.
+\red{put a picture of a tetraèdre with a face shaded of some color}
+en fait, est une face propre.
+\end{ex}
+
+Pour un simplexe \(\sigma=\conv\{u_0, \dots, u_n\}\),
+l'envelope de \(\sigma\)
+est 
+\[
+\bd \sigma = \bigcup_{\mathrm{face propre}\tau\leq \sigma} \tau.
+\]
+
+On arrive à notre but de cette section.
+
+\begin{df}
+Un \textbf{complexe simplicial} 
+\(K\) est un ensemble fini de 
+simplexes tels que 
+\begin{enumerate}[label=(\roman*)]
+\item si \(\sigma\in K\) et \(\tau\leq \sigma\), alors \(\tau\in K\) ;
+\item si \(\sigma,\sigma'\in K\) et \(\sigma\cap \sigma'\neq \varnothing\), alors \(\sigma\cap \sigma' \leq \sigma  \).
+\end{enumerate}
+La \textbf{dimension} de \(K\) est \[
+\dim K = \max_{\sigma\in K} \left( \dim \sigma \right).
+\]
+L'espace associé est 
+\[
+|K| = \bigcup_{\sigma\in K} \sigma.
+\]
+\end{df}
+
+\begin{ex}
+On considère le complexe simplicial
+\[
+K= \left\{ 
+    \conv\{u_0, u_1,u_2\}, 
+    \conv\{u_0, u_1\},  
+    \conv\{u_0, u_2\},  
+    \conv\{u_1, u_2\}, 
+    \conv\{u_2, u_3\}, 
+    u_0, u_1,u_2, u_3.
+ \right\}
+\]
+\red{shouldn't be the singletons instead of the actual points in there?}
+Graphiquement : 
+\begin{figure}[H]
+    \centering
+    \incsvg{0.5}{ex-simplex-tri}\\
+    %\caption{}
+    %\label{fig:ex-simplex-tri}
+\end{figure}
+\end{ex}
+
+\red{pintar los dibujos le quita formalidad?}
+
+\begin{ex}
+Soit \(K\) le complexe simplicial du dernier exemple.
+Si on ajoute le segment \(\conv\{u_1,u_3\}\),
+on obtient le complexe suivant
+\begin{figure}[H]
+    \centering
+    \incsvg{0.5}{ex-simplex-quat}\\
+    %\caption{}
+    %\label{fig:ex-simplex-quat}
+\end{figure}
+\end{ex}
+
+et on peut avoir des choses qui ne sont pas connectées.
+
+\begin{ex}[Non exemple]
+Le problème ce que l'intersection 
+des segment 
+\(\conv\{u_1,  u_2\}\)
+et 
+\(\conv\{u_3,  u_4\}\)
+n'est pas un element du \(K\).
+Mais on peut bien l'ajouter.
+\begin{figure}[H]
+    \centering
+    \incsvg{0.45}{ex-non-complexe-simplicial}\\
+    %\caption{}
+    %\label{fig:ex-non-complexe-simplicial}
+\end{figure}
+\end{ex}
+
+
+\begin{df}
+Un \textbf{complexe simplicial abstrait} \(A\)
+est un ensemble fini des ensembles finis, sauf \(\varnothing\),
+tels que 
+si \(\sigma\in A\) et \(\tau\subset \sigma\),
+alors 
+\(\tau\in A\). \red{this means \(A\) is closed below, sth like that}
+La dimension de \(A\) est 
+\[
+\dim A = \max_{\sigma\in A} \left\{ |\sigma| - 1 \right\}.
+\]
+\end{df}
+
+\begin{ex}
+L'ensemble
+\[
+A = 
+\left\{ 
+    \left\{ 0,1,2 \right\},
+    \left\{ 0,1 \right\},
+    \left\{ 0,2 \right\},
+    \left\{ 1,2 \right\},
+    \left\{ 2,3 \right\},
+    \left\{ 0 \right\},
+    \left\{ 1 \right\},
+    \left\{ 2 \right\},
+    \left\{ 3 \right\}
+\right\}
+\]
+\end{ex}
+
+Pour un ensemble fini de points \(A = \left\{ a_0, \dots, a_n \right\}\),
+on note 
+par \([a_0, \dots, a_n]\)
+le ensemble de tous parties 
+nonvides de \(A\).
+Équivalentement, \red{?}
+\[
+[a_0, \dots, a_n] = \mathscr{P}(\left\{ a_0, \dots, a_n \right\}) \setminus \left\{ \varnothing \right\}.
+\]
+
+
+
+\begin{ex}
+On a 
+\[
+[0,1,2] = 
+\left\{ 
+    \left\{ 0,1,2 \right\},
+    \left\{ 0,1 \right\},
+    \left\{ 0,2 \right\},
+    \left\{ 1,2 \right\},
+    \left\{ 0 \right\},
+    \left\{ 1 \right\},
+    \left\{ 2 \right\},
+    \left\{ 3 \right\}
+\right\}.
+\]
+\end{ex}
+
+
+\begin{rmk}
+Si \(K\) est un complexe simplicial geométrique,
+son complexe abstrait \(A(K)\) est donné par 
+les ensembles \(\left\{ u_0 ,\dots,u_n \right\}\)
+tels que 
+\[
+\conv\left\{ u_0 ,\dots,u_n \right\} \in K.
+\]
+\end{rmk}
+
+\begin{thm}
+Soit  \(A\) un complexe simplicial 
+abstrait de dimension \(n\).
+Alors il existe un complexe simplicial geométrique 
+\(K \subset \R^{2d+1}\) tel que \(A(K) = A\).
+\end{thm}

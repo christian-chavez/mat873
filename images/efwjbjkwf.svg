@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="40.336277mm"
+   height="40mm"
+   viewBox="0 0 40.336277 40"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="efwjbjkwf.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.4984147"
+     inkscape:cx="75.413035"
+     inkscape:cy="121.79539"
+     inkscape:window-width="1039"
+     inkscape:window-height="553"
+     inkscape:window-x="40"
+     inkscape:window-y="214"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-37.347648,-12.290081)">
+    <path
+       style="fill:none;fill-opacity:0.615083;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="m 38.101555,30.506847 c 4.12751,-14.39989 51.215017,4.193696 36.490802,18.904942 C 59.868143,64.123036 40.369466,12.267043 62.96148,12.541156 72.739587,12.659795 75.126058,23.800459 68.586715,31.95862 55.418087,48.387146 34.035242,44.693234 38.101555,30.506847 Z"
+       id="path1"
+       sodipodi:nodetypes="szsss" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.5861px;line-height:0.8;font-family:Iosevka;-inkscape-font-specification:Iosevka;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:square;stroke-linejoin:round"
+       x="37.164524"
+       y="16.13323"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5"
+         x="37.164524"
+         y="16.13323">$K_1$</tspan></text>
+  </g>
+</svg>

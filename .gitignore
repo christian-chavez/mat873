@@ -1,0 +1,5 @@
+# Ignore build directories
+_temp/*
+!_temp/*.pdf
+*fuse_hidden*
+.vscode/*
