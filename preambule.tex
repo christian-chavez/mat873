@@ -30,11 +30,13 @@
 \newtheorem{ex}{Exemple}
 \newtheorem{rmk}{Remarque}
 
+\newtheorem{cis}{Exercice}[section] 
+
 
 
 % shorcuts
 \newcommand{\incsvg}[2]{%
-    \def\svgwidth{#1\columnwidth}
+    \def\svgscale{#1}
     \graphicspath{{images/}}
     \input{images/#2.pdf_tex}
 }

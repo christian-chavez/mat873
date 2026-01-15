@@ -1,6 +1,15 @@
 \chapter{Des choses de base}
 
+
 \red{Lecture 2026-01-08}
+
+may be check Schenck Chapter 4
+Homology I: Simplicial Complexes
+to Sensor Networks
+
+and 
+chap 3 of 
+Edelsbrunner
 
 \section{Motivation}
 
@@ -23,9 +32,9 @@ Par exemple,
 
 \begin{figure}[H]
     \centering
-    \incsvg{0.25}{efwjbjkwf}\quad
-    \incsvg{0.25}{sphere}\quad
-    \incsvg{0.25}{sphere-trou}
+    \incsvg{1}{efwjbjkwf}\quad
+    \incsvg{1}{sphere}\quad
+    \incsvg{1}{sphere-trou}
     %\caption{}
     %\label{fig:efwjbjkwf}
 \end{figure}
@@ -53,9 +62,14 @@ Notice that we always have \(H_0\geq 1\).
 On va voir deux théorèmes importants :
 
 \begin{thm}
+Soient \(K\) et \(K'\) deux espaces topologiques.
 Si \(K\cong K'\), 
 alors \(H_p(K)\cong H_p(K')\).
 \end{thm}
+
+On remarque que le premier \(\cong\) est un isomorphisme d'espaces topologiques 
+et le deuxième \(\cong\) est un isomorphisme de groupes.
+
 
 \begin{thm}
 Tout espace topologique est isomorphe à un complexe simplicial.
@@ -81,13 +95,47 @@ $$
 Il n'est pas necesaire d'ajouter la condition \(n\leqslant d\)
 dans la définition.
 
+\red{
+ Is a Singleton affinely independent? By definition, no. But it should!?
+* Affine Independence is interesting from R² onwards, not R¹. Nest pas?
+}
 
 \begin{df}
 On dit que \(n+1\) points \(u_0, \dots, u_n\in \R^d\)
 sont \textbf{affinement independants}
-si  \(u_0 - u_1, \dots, u_0 - u_n\)
+si les \(n\) points \(u_0 - u_1, \dots, u_0 - u_n\)
 sont linéairement independants
 \end{df}
+
+Le point \(u_0\) n'est pas especial.
+On peut chosir un autre point de notre liste, disons \(u_j\),
+er verifier que 
+\(u_j - u_1, \dots, u_j - u_n\)
+est linéairement independant.
+
+Pour illustrer l'idée d'être affinement indépendants,
+on considere trois points.
+Si on prend \(u_0\) comme origen,
+alors on a deux vecteurs, et on checke si son colineaires ou pas.
+les points aff. ind. si il ne sont pas dans la même 
+ligne.
+l'origin n'importe pas, 
+il s'agit d'une question geometrique 
+et pas de la position dans le plan.
+
+\begin{figure}[H]
+    \centering
+    \incsvg{1}{idde-affinement-indep}
+    %\caption{}
+    %\label{fig:idde-affinement-indep}
+\end{figure}
+
+\begin{cis}
+Soit \(\{u_0, \dots, u_n\}\) linéairement independant.
+Quel point peut-on ajouter so that 
+on obtient un esemble affinement independant ?
+\end{cis}
+
 
 La combinaison convexe de   \(u_1, \dots, u_n\in \R^d\) \red{they need not be aff.indep.} affinement independants
 est 
@@ -103,7 +151,21 @@ est
 \begin{df}
 Un  \(n\)-\textbf{simplex}
 est la combinaison convexe de d'un ensemble fini de points affinement independants.
+Si \(\sigma = \conv\{u_0, \dots, u_n\}\)
+est un simplex, 
+son dimension est \(\dim \sigma = n\).
 \end{df}
+
+\begin{rmk}
+deux simplex peuvent avoir la même dimension 
+même si apartient a differents espaces.
+E.g. un triangle dans le plan, un triangle dans l'espace, dans R4
+il a toujours dimension 3.
+\end{rmk}
+
+\red{define standard simplexes?}
+there are many segments, triangles and tetahedra, mais 
+il y quelconques que sont distinguished.
 
 \begin{ex}
 \begin{enumerate}[label=(\roman*)]
@@ -124,6 +186,7 @@ On écrit \(\tau\leq \sigma\).
 
 \begin{rmk}
 On dit  que \(\tau\) est \textbf{propre} si \(\tau\neq \sigma\).
+Dans ce cas là on note \(\tau < \sigma\).
 \end{rmk}
 
 \begin{ex}
@@ -140,8 +203,11 @@ Pour un simplexe \(\sigma=\conv\{u_0, \dots, u_n\}\),
 l'envelope de \(\sigma\)
 est 
 \[
-\bd \sigma = \bigcup_{\mathrm{face propre}\tau\leq \sigma} \tau.
+\bd \sigma = \bigcup_{\mathrm{face\ propre\ }\tau\leq \sigma} \tau.
 \]
+Ce signifie que l'envelope est la ligne exterieur, the boundary.
+L'interiéur de \(\sigma\) est \(\sigma\setminus \bd \sigma\).
+Un point appartient à l'interieur si tous les \(\lambda_i\) sont positifs.
 
 On arrive à notre but de cette section.
 
@@ -149,6 +215,8 @@ On arrive à notre but de cette section.
 Un \textbf{complexe simplicial} 
 \(K\) est un ensemble fini de 
 simplexes tels que 
+\red{but what if they come from different ambient spaces? 
+we should mention this!}
 \begin{enumerate}[label=(\roman*)]
 \item si \(\sigma\in K\) et \(\tau\leq \sigma\), alors \(\tau\in K\) ;
 \item si \(\sigma,\sigma'\in K\) et \(\sigma\cap \sigma'\neq \varnothing\), alors \(\sigma\cap \sigma' \leq \sigma  \).
@@ -156,10 +224,13 @@ simplexes tels que
 La \textbf{dimension} de \(K\) est \[
 \dim K = \max_{\sigma\in K} \left( \dim \sigma \right).
 \]
-L'espace associé est 
+L'espace associé \red{underlying space} est 
 \[
 |K| = \bigcup_{\sigma\in K} \sigma.
 \]
+C'est un espace topologique avec la topologie
+\red{inherited from the ambient Euclidean space in which the simplices live}
+so what does this mean?
 \end{df}
 
 \begin{ex}
@@ -178,7 +249,7 @@ K= \left\{
 Graphiquement : 
 \begin{figure}[H]
     \centering
-    \incsvg{0.5}{ex-simplex-tri}\\
+    \incsvg{1}{ex-simplex-tri}\\
     %\caption{}
     %\label{fig:ex-simplex-tri}
 \end{figure}
@@ -192,7 +263,7 @@ Si on ajoute le segment \(\conv\{u_1,u_3\}\),
 on obtient le complexe suivant
 \begin{figure}[H]
     \centering
-    \incsvg{0.5}{ex-simplex-quat}\\
+    \incsvg{1}{ex-simplex-quat}\\
     %\caption{}
     %\label{fig:ex-simplex-quat}
 \end{figure}
@@ -210,11 +281,15 @@ n'est pas un element du \(K\).
 Mais on peut bien l'ajouter.
 \begin{figure}[H]
     \centering
-    \incsvg{0.45}{ex-non-complexe-simplicial}\\
+    \incsvg{1}{ex-non-complexe-simplicial}\\
     %\caption{}
     %\label{fig:ex-non-complexe-simplicial}
 \end{figure}
 \end{ex}
+
+\red{i like this quote from Edelsbrunner}
+\red{It is often easier to construct a complex ab-
+stractly and worry about how to put it into Euclidean space later, if at all.}
 
 
 \begin{df}
@@ -288,9 +363,12 @@ tels que
 \]
 \end{rmk}
 
-\begin{thm}
+\begin{thm}[Realization geométrique     ]
 Soit  \(A\) un complexe simplicial 
 abstrait de dimension \(n\).
 Alors il existe un complexe simplicial geométrique 
 \(K \subset \R^{2d+1}\) tel que \(A(K) = A\).
 \end{thm}
+
+\red{i'd like an extension to paste an image from the clipboard directly in vscode, in images folder, and adds the
+latex image snipet}
