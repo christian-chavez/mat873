@@ -18,6 +18,7 @@
     float,
     import,
     csquotes,
+    tikz-cd,
 }
 \geometry{margin=1.25in}
 
@@ -25,6 +26,7 @@
 
 \theoremstyle{definition}
 \newtheorem{thm}{Théorème}
+\newtheorem{lm}{Lemme}
 \newtheorem{df}{Définition}
 \newtheorem{prob}{Problème}
 \newtheorem{ex}{Exemple}
@@ -42,9 +44,12 @@
 }
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
 \DeclareMathOperator{\conv}{conv}
 \DeclareMathOperator{\bd}{bd}
 \DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\Ker}{Ker}
 
 % remove indentation at the begining of theorems 
 % \makeatletter
@@ -59,3 +64,16 @@
 ]{biblatex}
 \addbibresource{biblio.bib}
 \usepackage[bookmarks,hidelinks]{hyperref}
+
+\usetikzlibrary{arrows.meta}
+
+\tikzcdset{
+  arrow style=tikz,
+  line join=round,
+  diagrams={
+    % >={Latex[length=1mm,width=1mm]}
+    % >={Triangle[length=2.6mm,width=2.2mm]},
+    >={Stealth[round]},
+    % >={Kite[round]},
+  }
+}
