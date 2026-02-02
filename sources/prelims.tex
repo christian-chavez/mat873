@@ -328,7 +328,7 @@ stractly and worry about how to put it into Euclidean space later, if at all.}
 Un \textbf{complexe simplicial abstrait} \(A\)
 est un ensemble fini des ensembles finis, sauf \(\varnothing\), 
 tels que 
-si \(\sigma\in A\) et \(\tau\subset \sigma\),
+si \(\sigma\in A\) et \(\tau\subset \sigma\) est nonvide,
 alors 
 \(\tau\in A\). \red{this means \(A\) is closed below, sth like that}
 La dimension de \(A\) est 
@@ -340,32 +340,46 @@ La dimension de \(A\) est
 \red{but then we have a new definition of simplex? DEFINE IT}
 
 \begin{ex}
-Un graphe est un example d'un complexe simplicial abstrait, 
+\begin{enumerate}[label=(\alph*)]
+\item Les ensembles \(A = \{\{a\}, \{b\} \}\) et \(B = \{\{\{a\}\}, \{b \}\}\) sont des  complexe simpliciaux. L'ensemble  \(\{a, \{b \} \}\) n'est pas un complexe simplicial.
+\item Cet exemple montre que les étiques ne sont pas importants : 
+\[A = \{\{\clubsuit , \bigstar  \}, \{\blacklozenge , \spadesuit\}, \{\clubsuit\}, \{\bigstar \}, \{\blacklozenge \}, \{\spadesuit \}\}\] 
+est bien un complexe simplicial.
+\item \(A = \{\{\varnothing\}\}\) est un complex. En fait, \(\{\{x\}\}\) est un complex pour tout objet \(x\). Est-ce que \(\{\{\{x\}\}\}\) est un complex ?
+\item Un graphe est un example d'un complexe simplicial abstrait, 
 en particulier un quiver, un arbre, hasse diagram,  etc.
+\end{enumerate}
 \end{ex}
-
+ 
 \red{i got confused while trying to solve Benv ex 1.1.4.i. 
 There, s is a simplex in the combinatorial sense. Furthermore,
 a simplicial complex is closed below by containments, ie it must contain the lower-dimensional elements of its simplices. however, simplices do not have that property. so \(\{1,2\}\) a perfect example of a simplex, but \(\{\{1,2\}\}\) is not a valid complex }
 
-\begin{ex}
+Voici un exmple ``pas trivial''
+\begin{ex}\label{exp:triangle-arete}
 L'ensemble
-\[
-A = 
-\left\{ 
+\begin{align*}
+A 
+&= \left\{ 
     \left\{ 0,1,2 \right\},
     \left\{ 0,1 \right\},
     \left\{ 0,2 \right\},
     \left\{ 1,2 \right\},
-    \left\{ 2,3 \right\},
     \left\{ 0 \right\},
     \left\{ 1 \right\},
-    \left\{ 2 \right\},
+    \left\{ 2 \right\},\right.\\
+&\quad \ \ \left.
+    \left\{ 2,3 \right\},
     \left\{ 3 \right\}
 \right\}
-\]
+\end{align*}
+est un complexe simplicial.
+On a écrit tous les sous ensembles nonvides de \(\left\{ 0,1,2 \right\}\) dans la premiere ligne,
+et tous les sous ensembles nonvides de \(\left\{ 2,3 \right\}\) dans la deuxième, (avec pas répetition).
 \end{ex}
 
+On remarque que l'écriture n'est pas si efficient,
+donc on utilizerá une notation plus prátique.
 Pour un ensemble fini de points \(A = \left\{ a_0, \dots, a_n \right\}\),
 on note 
 par \([a_0, \dots, a_n]\)
@@ -373,8 +387,31 @@ le ensemble de tous parties
 nonvides de \(A\).
 Équivalentement, \red{?}
 \[
-[a_0, \dots, a_n] = \mathscr{P}(\left\{ a_0, \dots, a_n \right\}) \setminus \left\{ \varnothing \right\}.
+[a_0, \dots, a_n] = \mathcal{P}(\left\{ a_0, \dots, a_n \right\}) \setminus \left\{ \varnothing \right\}.
 \]
+Avec cette notation le complexe de l'exemple \autoref{exp:triangle-arete} devient 
+\[
+A = [ 0,1,2] \cup [2,3]
+\]
+où 
+\begin{align*}
+[0,1,2] &= 
+\left\{ 
+    \left\{ 0,1,2 \right\},
+    \left\{ 0,1 \right\},
+    \left\{ 0,2 \right\},
+    \left\{ 1,2 \right\},
+    \left\{ 0 \right\},
+    \left\{ 1 \right\},
+    \left\{ 2 \right\},
+    \left\{ 3 \right\}
+\right\},\\
+[2,3] &= \left\{     \left\{ 2,3 \right\}, \left\{ 2 \right\},
+    \left\{ 3 \right\} \right\}.
+\end{align*}
+
+Or, on voudrait utiliser  encore une notation plus efficace.
+
 \red{Benv notes: they omit the parethenses and commas altogether ``Lorsqu’il n’y a pas de confusion possible, on omet les parenthèses et les virgules pour les sim-
 plexes, par exemple le simplexe {1, 2, 3} est simplement noté 123''}
 \red{are there any books that use this convention?}
@@ -391,20 +428,7 @@ i think it is better to stick to the parenthesis. does any author use this? can 
 }
 
 \begin{ex}
-On a 
-\[
-[0,1,2] = 
-\left\{ 
-    \left\{ 0,1,2 \right\},
-    \left\{ 0,1 \right\},
-    \left\{ 0,2 \right\},
-    \left\{ 1,2 \right\},
-    \left\{ 0 \right\},
-    \left\{ 1 \right\},
-    \left\{ 2 \right\},
-    \left\{ 3 \right\}
-\right\}.
-\]
+
 \red{importa el orden? para qué? say \([0,1,2] = [2,1,0]\) ?}
 \end{ex}
 
@@ -505,8 +529,7 @@ or even par \(C\) seulement.
 
 
 \begin{df}
-
-Le i-ème groupe d'homologie d'un complexe simplicial \(C_\bullet\) est 
+Le i-ème groupe d'homologie d'un complexe simplicial \(\left( C_\bullet, \partial_\bullet \right)\) est 
 \[
 H_i(C_\bullet) = \Ker \partial_i / \im \partial_{i+1}.
 \]
