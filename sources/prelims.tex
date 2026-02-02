@@ -50,8 +50,8 @@ Pour illustrer, on note par
 
 Alors dans les figures ci-dessus, on a 
 \begin{alignat*}{3}
-H_0(K_1) &= \Z,\quad  && H_1(K_1) = \Z^4,\quad  && H_2(K_1) = 0\\
-H_0(K_2) &= \Z,\quad  && H_1(K_2) = \Z,\quad  && H_2(K_2) =\Z\\
+H_0(K_1) &= \Z,\quad  && H_1(K_1) = \Z^4,\quad  && H_2(K_1) = 0,\\
+H_0(K_2) &= \Z,\quad  && H_1(K_2) = \Z,\quad  && H_2(K_2) =\Z,\\
 H_0(K_3) &= \Z,\quad  && H_1(K_3) = 0,\quad  && H_2(K_3) = 0.
 \end{alignat*}
 
@@ -76,6 +76,8 @@ Tout espace topologique est isomorphe à un complexe simplicial.
 \red{est-ce que ceci est vrai?}
 \end{thm}
 
+\section{Complexes simpliciaux}
+
 BUT : Définir \emph{complexe simplicial}.
 
 
@@ -91,13 +93,18 @@ $$
 \dim \spn \left\{ u_1, \dots, u_n \right\} = n
 $$
 \end{df}
+ 
 
 Il n'est pas necesaire d'ajouter la condition \(n\leqslant d\)
 dans la définition.
 
-\red{
- Is a Singleton affinely independent? By definition, no. But it should!?
+% \red{Par définition, un singleton n'est jamais affinement independant 
+% car l'ensemble \(\{0\}\) n'est pas linéairement independant. THIS IS FALSE.}
+% \red{the def says that we should consider the n points after removing the one that we sustracted.
+% Thus every singleton is affinement independant car the empty set is l.i}
+\red{ 
 * Affine Independence is interesting from R² onwards, not R¹. Nest pas?
+is it worth mentioning sth like this?
 }
 
 \begin{df}
@@ -109,7 +116,7 @@ sont linéairement independants
 
 Le point \(u_0\) n'est pas especial.
 On peut chosir un autre point de notre liste, disons \(u_j\),
-er verifier que 
+et verifier que 
 \(u_j - u_1, \dots, u_j - u_n\)
 est linéairement independant.
 
@@ -130,14 +137,37 @@ et pas de la position dans le plan.
     %\label{fig:idde-affinement-indep}
 \end{figure}
 
+\begin{ex}
+\begin{enumerate}[label=(\roman*)]
+\item Tout ensemble linéairement independant est affinement independant, mais pas au contraire.
+\item Tout ensemble avec un point est affinement independant. En particulier, l'esemble \(\{0\}\), qui est linéairement dépendant,  est affinement independant. Ceci suit du fait que \(\varnothing\) est linéairement independant. Peut le lecteur montrer que tout ensemble avec deux points differents est affinement independant?
+\item Dans \(\R^n\), l'ensemble \(\{0, \mathbf e_1, \dots, \mathbf{e}_n\}\) est affinement
+independant.
+Ici \(\mathbf e_i\) denote le \(i\)-ème vecteur de la base canonique.
+Au fait, l'ensemble \(\{0, \mathbf e_1, \dots, \mathbf{e}_i\}\) est affinement
+independant, pour chaque \(i\geq 1\).
+\end{enumerate}
+\end{ex}
+ 
+
 \begin{cis}
 Soit \(\{u_0, \dots, u_n\}\) linéairement independant.
-Quel point peut-on ajouter so that 
+
+\begin{enumerate}[label=(\alph*)]
+\item Quel point peut-on l'ajouter so that 
 on obtient un esemble affinement independant ?
+\item Montrer que, pour chaque \(j\), l'ensemble \(X=\{u_0-u_j, \dots, u_n-u_j\}\) n'est jamais  affinement independant. Cependant, \(X\setminus \{0\}\) est toujours affinement independant.
+\item Soit \(v_k = u_0 + \cdots + u_k\).
+Montrer que \(\{v_1, v_2, \dots, v_k\}\) est affinement independant.
+Pour quelles valeures de \(a\) est \(\{av_0,v_1, v_2, \dots, v_k\}\)
+affinement independant ?
+\end{enumerate}
+
+
 \end{cis}
 
 
-La combinaison convexe de   \(u_1, \dots, u_n\in \R^d\) \red{they need not be aff.indep.} affinement independants
+La combinaison convexe de   \(u_1, \dots, u_n\in \R^d\) (affinement independants ou pas)
 est 
 \red{give intuition}
 \[
@@ -151,9 +181,8 @@ est
 \begin{df}
 Un  \(n\)-\textbf{simplex}
 est la combinaison convexe de d'un ensemble fini de points affinement independants.
-Si \(\sigma = \conv\{u_0, \dots, u_n\}\)
-est un simplex, 
-son dimension est \(\dim \sigma = n\).
+La dimension d'un \(n\)-simplex \(\sigma = \conv\{u_0, \dots, u_n\}\)
+est  \(\dim \sigma = n\).
 \end{df}
 
 \begin{rmk}
