@@ -1,34 +1,82 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{myto}[2026/02/03 Custom esvect-f To Arrow]
 
-% 1. Setup font family
-\DeclareSymbolFont{esvector}{U}{esvect}{m}{n}
-\DeclareMathSymbol{\esvheadf}{\mathord}{esvector}{'026} % option f head
+\RequirePackage{graphicx} % for \raisebox
 
-% ---- knobs you can tune ----
-% \newcommand{\esvtoLeftKern}{-5mu}   % reduces space after 'a'
-\newcommand{\esvTipScale}{1.335}
-\newcommand{\esvTipDrop}{0.20ex} % positive number = drop down
-\newcommand{\esvtoHeadKern}{-8mu}   % fills the gap before the head
-\newcommand{\esvheadfBig}{%
-  \mathord{%
-    \raisebox{-\esvTipDrop}{\scalebox{\esvTipScale}{$\esvheadf$}}%
+\makeatletter
+
+% ---- knobs ----
+\newcommand{\esvArrowSize}{17.28}   % try 12, 13, 14, 15 ...
+\newcommand{\esvArrowDrop}{0.26ex} % increase to move DOWN
+\newcommand{\esvHeadJoinKern}{-1.5mu} % tighten/loosen joins
+% --------------
+
+% typeset ONE esvect glyph at explicit size (no scaling transform)
+\newcommand{\esvGlyph}[1]{%
+  \raisebox{-\esvArrowDrop}{%
+    \hbox{%
+      \usefont{U}{esvect}{m}{n}\fontsize{\esvArrowSize}{\esvArrowSize}\selectfont
+      \char#1%
+    }%
   }%
 }
-% ----------------------------
 
-% Fill: repeated '-' then head
-\def\esvtofill@{%
-  $\m@th
-    % \mkern3mu
-    \hspace{-0.5em}
-    \cleaders\hbox{$\m@th\mkern3mu\mathord{-}\mkern0.5mu$}\hfill
-    \mkern\esvtoHeadKern
-    \esvheadfBig
-  $%
+% fixed-width fill (same esvect idea: start cap + leaders + head)
+\def\esvFixedFill@#1{%
+  \hbox to #1{$\m@th
+    \mkern2mu
+    \mathord{\esvGlyph{'043}}% start cap
+    \mkern\esvHeadJoinKern
+    \cleaders\hbox{$\m@th\mathord{\esvGlyph{'040}}$}\hfill% fill
+    \mkern\esvHeadJoinKern
+    \mathord{\esvGlyph{'026}}% head (option f)
+  $}%
 }
 
+% how long you want the arrow. 
+% 1.8 imitates the length of Assem's Basic rep theory yellow book
+\newcommand{\farrow}{\mathrel{\esvFixedFill@{1.4em}}}
+\newcommand{\esvlongto}{\mathrel{\esvFixedFill@{3.0em}}}
 
-% Fixed-size relation arrows
-\newcommand{\farrow}{\mathrel{\hbox to 1.3em{\esvtofill@}}}
-\newcommand{\esvlongto}{\mathrel{\hbox to 3.0em{\esvtofill@}}}
+\makeatother
+% \renewcommand{\to}{\farrow}
+
+% -------------------------------------------------------------
+% future
+% This is honestly a super solid final form. You fixed the two big pain points (viewer artifacts + spacing) the right way: no transforms, just explicit font sizes + leaders.
+
+% If you want one small 'pro' polish so it behaves like a real math relation in *all* styles (display/text/script/scriptscript), you can wrap your `\esvArrowSize` and `\esvArrowDrop` in a `\mathchoice` so it doesn't look comically huge in subscripts.
+
+% Here is the minimal tweak (keeps your code structure, just adds style-dependent sizes):
+
+% ```latex
+% % style-dependent settings (edit these 4 to taste)
+% \newcommand{\esvArrowSetup}{%
+%   \mathchoice
+%     {\def\esvArrowSize{17.28}\def\esvArrowDrop{0.26ex}}% display
+%     {\def\esvArrowSize{17.28}\def\esvArrowDrop{0.26ex}}% text
+%     {\def\esvArrowSize{14.4}\def\esvArrowDrop{0.22ex}}% script
+%     {\def\esvArrowSize{12}\def\esvArrowDrop{0.18ex}}% scriptscript
+% }
+
+% \newcommand{\esvGlyph}[1]{%
+%   \esvArrowSetup
+%   \raisebox{-\esvArrowDrop}{%
+%     \hbox{%
+%       \usefont{U}{esvect}{m}{n}\fontsize{\esvArrowSize}{\esvArrowSize}\selectfont
+%       \char#1%
+%     }%
+%   }%
+% }
+% ```
+
+% Drop that in place of your current `\esvGlyph` definition (and remove the fixed `\esvArrowSize` / `\esvArrowDrop` knobs if you want).
+
+% If you *don’t* care about script sizing (and most people won’t), your current version is already great.
+
+% Two micro-notes (optional):
+
+% * Replace `\newcommand{\esvArrowSize}{...}` with `\def\esvArrowSize{...}` if you ever want to override it later without LaTeX complaining.
+% * That comment about Assem's yellow book made me laugh. 10/10 documentation.
+
+% If you want, I can also show how to make a labeled arrow `\xfarrow{f}` that stretches to the label length but keeps your exact head.
