@@ -19,7 +19,11 @@
     import,
     csquotes,
     tikz-cd,
+    mathtools,
 }
+% \usepackage[f]{esvect}
+% \newcommand{\vto}{\mathrel{\vv{\phantom{x}}}}
+% \renewcommand{\to}{\vto}
 \geometry{margin=1.25in}
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
@@ -77,3 +81,10 @@
     % >={Kite[round]},
   }
 }
+
+
+% \newcommand{\prettyto}{\mathrel{\tikz[baseline=-0.6ex]\draw[-{Stealth[length=2.2mm,width=1.6mm]}] (0,0)--(1.25,0);}}
+% \let\to\prettyto
+
+\usepackage{myto}
+

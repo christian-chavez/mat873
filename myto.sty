@@ -1,0 +1,34 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{myto}[2026/02/03 Custom esvect-f To Arrow]
+
+% 1. Setup font family
+\DeclareSymbolFont{esvector}{U}{esvect}{m}{n}
+\DeclareMathSymbol{\esvheadf}{\mathord}{esvector}{'026} % option f head
+
+% ---- knobs you can tune ----
+% \newcommand{\esvtoLeftKern}{-5mu}   % reduces space after 'a'
+\newcommand{\esvTipScale}{1.335}
+\newcommand{\esvTipDrop}{0.20ex} % positive number = drop down
+\newcommand{\esvtoHeadKern}{-8mu}   % fills the gap before the head
+\newcommand{\esvheadfBig}{%
+  \mathord{%
+    \raisebox{-\esvTipDrop}{\scalebox{\esvTipScale}{$\esvheadf$}}%
+  }%
+}
+% ----------------------------
+
+% Fill: repeated '-' then head
+\def\esvtofill@{%
+  $\m@th
+    % \mkern3mu
+    \hspace{-0.5em}
+    \cleaders\hbox{$\m@th\mkern3mu\mathord{-}\mkern0.5mu$}\hfill
+    \mkern\esvtoHeadKern
+    \esvheadfBig
+  $%
+}
+
+
+% Fixed-size relation arrows
+\newcommand{\farrow}{\mathrel{\hbox to 1.3em{\esvtofill@}}}
+\newcommand{\esvlongto}{\mathrel{\hbox to 3.0em{\esvtofill@}}}
