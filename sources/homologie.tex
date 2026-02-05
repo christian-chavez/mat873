@@ -1,0 +1,391 @@
+
+\section{Groupe d'homologie}
+\red{Lecture 2026-01-22}
+see my notes,
+check Elementary Applied topology, Ghrist, page 30
+
+
+Tout au long de cette section, \(\mathbb{F}\) désigne un corps.
+On travaille avec \(\mathbb{F} = \Z_2 \).
+
+\begin{df}
+Une complexe de chaîne 
+est une paire  \(\left( C_\bullet, \partial_\bullet \right)\),
+où \(C_\bullet = (C_i)_{i\in \Z}\) est une famille de espaces vectoriels sur \(\F\)
+et \(\partial_\bullet = (\partial_i\colon C_i\to C_{i-1})_{i\in \Z}\) est une famille \red{:/}  de applications linéaires
+\[
+\cdots \to C_i \xrightarrow{\partial_i} C_{i-1} \xrightarrow{\partial_{i-1}} C_{i-2} \to \cdots
+\]
+tel que 
+\[
+\partial_{i-1}\circ \partial_{i} = 0
+\]
+pour chaque \(i\in\Z\).
+On dit que l'espace \(C_i\)  est de degré \(i\)
+et que \(\partial_i \) est le differetiel \red{confirm this terminology} 
+de degré \(i\).
+\end{df}
+
+Comme d'habitude, on omit the endowing stuff, et on denote le complexe de chaîne
+simplement par \(C_\bullet\),
+or even par \(C\) seulement.
+
+\begin{rmk}\hfill
+\begin{itemize}
+\item On se souvient toujours que le dubindex de \(\partial\) est le index de son domaine.
+\item On remarque que la condition \(\partial_{i-1}\circ \partial_{i}\) est équivalente à \(\im \partial_i \subseteq \Ker \partial_{i-1} \).
+\item On note \(B_i(C_\bullet) = \im \partial_i\) et \(Z_i(C_\bullet) = \Ker \partial_i\) pour chaque \(i\in \Z\).
+\item On oublie le subindex de \(\partial_i\). Donc on écrit \(\partial^2 = 0\).
+\end{itemize}
+
+\end{rmk}
+
+\red{quelle est la difference avec complexe differentiel?}
+
+
+\begin{df}
+Le i-ème groupe d'homologie d'un complexe simplicial \(\left( C_\bullet, \partial_\bullet \right)\) est 
+\[
+H_i(C_\bullet) = \Ker \partial_i / \im \partial_{i+1}.
+\]
+\end{df}
+
+
+
+On remarque que \(H_i\) est un espace vectoriel,
+éntant que qoutient des espaces vetoriels.
+
+Avec notre notation de antes, 
+on a \(H_i(C_\bullet) = Z_i/ B_i\).
+
+\subsection{``but d'ajourdhui'}
+
+on a vu les définitions précedentes sans réference a ce on avait étudie avant.
+Maintenant, on fait la connection.
+Étant donné un complexe simplicial abstrait \(A\),
+on voudrait  construire un complexe de chaînes 
+\(C(A)\).
+même si  on donne un complexe simplices geométrique.
+
+
+Soit \(A \) un complexe simplicial abstrait.
+Pour chaque \(i\in \Z\),
+on pose 
+\(C_i\) l'espace vectoriel d ebase l'ensemble de i-simplexes dans \(A\). (i.e. de dim i)
+
+Alors 
+\begin{align*}
+C_0 &= \langle\,  \mathrm{points} \, \rangle\\
+C_1 &= \langle\,  \text{arêtes} \, \rangle\\
+C_2 &= \langle\,  \mathrm{triangles} \, \rangle\\
+    &\ \, \vdots                           \\
+C_i &= \langle\,  i\mathrm{-simplexes} \, \rangle
+\end{align*}
+
+On remarque que \(C_i = 0\), l'espace vectoriel nul, pour Tout \(i \in \Z_{\leq 1}\).
+Alors on pose \(C(A) = (C_i)_{i\in\Z}\).
+
+On construit Maintenant les applications linéaires.
+
+\[
+\partial_1 \colon C_1 \to C_0, \quad ab\mapsto a+b
+\]
+
+% \(\cdot - \cdot\mapsto \) 
+\red{définir \(\partial_i\)}
+
+Si \(A\) est un complexe simplicial abstrait,
+on a le \(i\)-ème groupe d'homologie 
+\[
+H_i(A) = H_i(C(A)).
+\]
+on note \(\beta_i = \dim H_i(A)\).
+La dimension étant que espace vectoriel,
+laquel est égal a dim ker - dim img, 
+par un théorème d'algèbre linéaire.
+
+
+\begin{ex}
+Soit 
+\[
+A = \left\{ 
+        [5,6], [1,2,3], [1,4], [3,4]
+ \right\}   
+\]
+
+\begin{figure}[H]
+    \centering
+    \incsvg{1}{cs-un-dim-trou-un-arete}
+    %\caption{}
+    %\label{fig:cs-un-dim-trou-un-arete}
+\end{figure}
+%
+\noindent On va (i) construire un complexe de chaîne et (ii) calculer le groupe de homologie à chaque point\red{?}
+
+\[
+\adjustbox{scale=0.85}{%
+\begin{tikzcd}[
+    column sep={1.4em},
+    % 1. Force the first column to align to the West (Left)
+    /tikz/column 1/.append style={anchor=base west},
+    % 2. Draw the backgrounds behind the diagram
+    execute at end picture={
+        \begin{pgfonlayer}{background}
+            % Gray box for the top row (from alias 'r1start' to 'r1end')
+            \node[fit=(r1start) (r1end), fill=gray!10, inner sep=2.5pt] {};
+            % Gray box for the bottom row (from alias 'r4start' to 'r4end')
+            \node[fit=(r4start) (r4end), fill=gray!10, inner sep=2.5pt] {};
+        \end{pgfonlayer}
+    }
+]
+% Row 1: Add aliases to start and end
+|[alias=r1start]| \mathrm{type} & & \text{tétraèdres} & \mathrm{triangles} & \text{arêtes} & \mathrm{sommets} & |[alias=r1end]| \mathrm{nul} \\
+\mathrm{complexe} & \cdots \arrow[r] & C_3 \arrow[r, "\partial_3"] & C_2 \arrow[r, "\partial_2"] & C_1 \arrow[r, "\partial_1"] & C_0 \arrow[r, "\partial_0"] & 0 \\
+\mathrm{base} & \cdots \arrow[r] & 0 \arrow[r, "\partial_3"] & \langle 123\rangle \arrow[r, "\partial_2"] & {\langle 12,13,23,34,14,56\rangle} \arrow[r, "\partial_1"] & {\langle 1,2,3,4,5,6\rangle} \arrow[r, "\partial_0"] & 0 \\
+% Row 4: Add aliases to start and end
+|[alias=r4start]| \dim(C_i) & & 0 & 1 & 6 & 6 & |[alias=r4end]| 0
+\end{tikzcd}
+}
+\]
+
+D'abord on trouve les applications \(\partial_i\).
+Comme notres espaces vectoriels ont dimension finie,
+on \red{regard our linear maps as matrices}.
+On remarque que \(\partial_3 = 0\) et \(\partial_0\) car 
+\(\mathrm{dom}(\partial_3) = 0\) 
+et 
+\(\mathrm{dom}(\partial_0) = 0\),
+respectivement.
+Pour trouver \(\partial_1\) et \(\partial_2\),
+we look at what they do to the bases.
+Pour \(\partial_1\), on a 
+\begin{align*}
+\partial_1(12) &= 1+2 = \textcolor{gray}{1}\cdot 1 + \textcolor{gray}{1}\cdot 2 + \textcolor{gray}{0} \cdot 3 + \textcolor{gray}{0}\cdot 4 + \textcolor{gray}{0} \cdot 5 + \textcolor{gray}{0} \cdot 6, \\
+\partial_1(13) &= 1+3 = \textcolor{gray}{1}\cdot 1 + \textcolor{gray}{0}\cdot 2 + \textcolor{gray}{1} \cdot 3 + \textcolor{gray}{0}\cdot 4 + \textcolor{gray}{0} \cdot 5 + \textcolor{gray}{0} \cdot 6 ,\\
+\partial_1(23) &= 2+3 = \textcolor{gray}{0}\cdot 1 + \textcolor{gray}{1}\cdot 2 + \textcolor{gray}{1} \cdot 3 + \textcolor{gray}{0}\cdot 4 + \textcolor{gray}{0} \cdot 5 + \textcolor{gray}{0} \cdot 6 ,\\
+\partial_1(34) &= 3+4 = \textcolor{gray}{0}\cdot 1 + \textcolor{gray}{0}\cdot 2 + \textcolor{gray}{1} \cdot 3 + \textcolor{gray}{1}\cdot 4 + \textcolor{gray}{0} \cdot 5 + \textcolor{gray}{0} \cdot 6 ,\\
+\partial_1(14) &= 1+4 = \textcolor{gray}{1}\cdot 1 + \textcolor{gray}{0}\cdot 2 + \textcolor{gray}{0} \cdot 3 + \textcolor{gray}{1}\cdot 4 + \textcolor{gray}{0} \cdot 5 + \textcolor{gray}{0} \cdot 6 ,\\
+\partial_1(56) &= 5+6 = \textcolor{gray}{0}\cdot 1 + \textcolor{gray}{0}\cdot 2 + \textcolor{gray}{0} \cdot 3 + \textcolor{gray}{0}\cdot 4 + \textcolor{gray}{1} \cdot 5 + \textcolor{gray}{1} \cdot 6 .
+\end{align*}
+La matrice associée est donc
+\[
+M_{1} = 
+\sbordermatrix{
+ & \textcolor{gray}{12} & \textcolor{gray}{13} & \textcolor{gray}{23} & \textcolor{gray}{34} & \textcolor{gray}{14} & \textcolor{gray}{56} \cr
+\textcolor{gray}{1 }& 1 & 1 & 0 & 0 & 1 & 0 \cr
+\textcolor{gray}{2 }& 1 & 0 & 1 & 0 & 0 & 0 \cr
+\textcolor{gray}{3 }& 0 & 1 & 1 & 1 & 0 & 0 \cr
+\textcolor{gray}{4 }& 0 & 0 & 0 & 1 & 1 & 0 \cr
+\textcolor{gray}{5 }& 0 & 0 & 0 & 0 & 0 & 1 \cr
+\textcolor{gray}{6 }& 0 & 0 & 0 & 0 & 0 & 1
+}.
+\]
+Ceci est d'accord avec l'info du diagramme ci-dessus,
+ou se nos indica que \(\partial_1\) est une application linéaire entre espaces de dimension \(6\).
+Pour \(\partial_2\), on a 
+\begin{align*}
+\partial_2(123) &= 12 + 13 + 23\\
+                &= \textcolor{gray}{1}\cdot 12 + \textcolor{gray}{1}\cdot 13 + \textcolor{gray}{1} \cdot 23 + \textcolor{gray}{0}\cdot 34 + \textcolor{gray}{0} \cdot 14 + \textcolor{gray}{0} \cdot 56
+\end{align*}
+et sa matrice associée est 
+\[
+M_{2} = 
+\sbordermatrix{
+ & \textcolor{gray}{123}  \cr
+\textcolor{gray}{12 } & 1 \cr
+\textcolor{gray}{13 } & 1 \cr
+\textcolor{gray}{23 } & 1 \cr
+\textcolor{gray}{34 } & 0 \cr
+\textcolor{gray}{14 } & 0 \cr
+\textcolor{gray}{56 } & 0
+}
+\]
+
+On a placé les nombre en gray seulement pour aide pedagogique.
+On vérifié que \(\partial_{i-1}\circ \partial_i = 0\)
+pour chaque \(i\in \Z\).
+Si \(i\geq 3\) ou \(i\leq 1\), alors \(\partial_i = 0\), et donc 
+\(\partial_{i-1}\circ \partial_i = 0\).
+Alors il reste seulement à vérifier pour \(i = 2\).
+On a 
+\begin{align*}
+M_1 M_2 &=
+\left[\begin{smallmatrix}
+    \vrule width 0pt height 6pt
+1 & 1 & 0 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 1
+    \vrule width 0pt depth 2pt
+\end{smallmatrix}\right]
+\left[\begin{smallmatrix}
+\vrule width 0pt height 6pt
+1 \\ 1 \\ 1 \\ 0 \\ 0 \\ 0
+\vrule width 0pt depth 2pt
+\end{smallmatrix}\right] \\
+&= 1 \cdot \!\left[\begin{smallmatrix} 
+\vrule width 0pt height 6pt 
+1 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 
+\vrule width 0pt depth 2pt
+\end{smallmatrix}\right]
++ 1 \cdot \!\left[\begin{smallmatrix}
+\vrule width 0pt height 6pt 1 \\ 0 \\ 1 \\ 0 \\ 0 \\ 0 \vrule width 0pt depth 2pt
+\end{smallmatrix}\right]
++ 1 \cdot \!\left[\begin{smallmatrix}
+\vrule width 0pt height 6pt 0 \\ 1 \\ 1 \\ 0 \\ 0 \\ 0 \vrule width 0pt depth 2pt
+\end{smallmatrix}\right]
++ 0 \cdot \!\left[\begin{smallmatrix}
+\vrule width 0pt height 6pt 0 \\ 0 \\ 1 \\ 1 \\ 0 \\ 0 \vrule width 0pt depth 2pt
+\end{smallmatrix}\right]
++ 0 \cdot \!\left[\begin{smallmatrix}
+\vrule width 0pt height 6pt 1 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0 \vrule width 0pt depth 2pt
+\end{smallmatrix}\right]
++ 0 \cdot \!\left[\begin{smallmatrix}
+\vrule width 0pt height 6pt 0 \\ 0 \\ 0 \\ 0 \\ 1 \\ 1 \vrule width 0pt depth 2pt
+\end{smallmatrix}\right] \\
+&= \left[\begin{smallmatrix}
+\vrule width 0pt height 6pt 1+1+0 \\ 1+0+1 \\ 0+1+1 \\ 0 \\ 0 \\ 0 \end{smallmatrix}\right]
+= \vrule width 0pt depth 2pt
+\left[\begin{smallmatrix}
+\vrule width 0pt height 6pt 2 \\ 2 \\ 2 \\ 0 \\ 0 \\ 0 \vrule width 0pt depth 2pt
+\end{smallmatrix}\right]
+= \left[\begin{smallmatrix}
+\vrule width 0pt height 6pt 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \vrule width 0pt depth 2pt
+\end{smallmatrix}\right].
+\end{align*}
+\end{ex}
+Il suit que \(\partial_1\circ \partial_2 = 0\).
+On a bien montré que c'est un complexe de chaîne.
+
+On calcule maintenant les groupes d'homologie.
+Pour \(i\geq 3\),  le domain de \(\partial_i \colon 0\to C_{i-1}\) 
+est \(0\), son noyau est donc \(0\).
+Il suit que 
+\[
+H_i 
+= \frac{\Ker \p_i }{\im \p_{i+1}}
+= \frac{0}{\im \p_{i+1}}
+= 0.
+\]
+Ceci refleja el hecho de que no hay huecos de dimensiones 3 o mayor.
+Les groupes d'homologie qui nous interesent son :
+\[
+H_2 = \frac{\Ker \p_2 }{\im \p_{3}},
+\quad
+H_1 = \frac{\Ker \p_1 }{\im \p_{2}},
+\quad
+H_0 = \frac{\Ker \p_0 }{\im \p_{1}}.
+\]
+C'est très fácile à voir que 
+\(\im \p_{3} = 0\) et que 
+\(\Ker \p_0 = C_0\). \red{should elaborate on this?}
+De plus, comme \(\p_2\) est injetif, \(\Ker \p_2 = 0\).
+Alors 
+\[
+H_2 
+% = \frac{\Ker \p_2 }{\im \p_{3}}
+= \frac{0}{\im \p_{3}}
+= 0.
+\]
+Pour trouver \(\Ker \p_1\),
+on trouve une base de l'espace colonne 
+de \(M_1\),
+ce que est un task de algèbre linéaire.
+
+\begin{align*}
+% 1. Start: Top Right Matrix
+\left[
+\begin{array}{ccc|ccc}
+1 & 1 & 0 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 & 0 & 0 \\\hline
+0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{array}
+\right]
+% Arrow down: R2+R1 and R6+R5
+&\xrightarrow{\substack{R_2 + R_1 \\ R_6 + R_5}}
+\left[
+\begin{array}{ccc|ccc}
+1 & 1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 1 & 1 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{array}
+\right] \\[2em]
+% Arrow left: R3+R2
+&\xrightarrow{R_3 + R_2}
+\left[
+\begin{array}{ccc|ccc}
+1 & 1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{array}
+\right] \\[2em]
+% Arrow down: R4+R3
+&\xrightarrow{R_4 + R_3}
+\left[
+\begin{array}{ccc|ccc}
+1 & 1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{array}
+\right]
+\end{align*}
+
+
+\subsection{Complexe de Cech}
+
+\section{2026-01-29}
+
+\begin{df}
+Une suite exacte corte d'espaces vectoriels
+est 
+\end{df}
+
+on peut le voir comme un cas particulier d'un complexe de chaine
+ou \(C_i = 0\) pour tou \(i<0, i>2\).
+
+\red{convention: when we say the diagram commutes, we mean the solid lines. the dashed arros are about the claim of the thm}
+
+\begin{lm}
+Donné un diagramme commutatif de lignes exactes 
+\[
+\begin{tikzcd}
+0 \arrow[r] & X \arrow[d, "u"] \arrow[r, "f"] & Y \arrow[r, "g"] \arrow[d, "v"] & Z \arrow[d, "w", dashed] \arrow[r] & 0 \\
+0 \arrow[r] & X' \arrow[r, "f'"]              & Y' \arrow[r, "g'"]              & Z' \arrow[r]                       & 0
+\end{tikzcd}
+\]
+Il existe une fonction linéaire \(w\colon Z\to Z' \)
+tel que le carré à droite commute,
+i.e. \(w\circ g = g' \circ v\).
+\end{lm}
+
+\red{maybe the zeros to the left are not needed.}
+
+\begin{proof}
+Soit \(z\in Z\).
+\end{proof}
+
+
+\begin{df}
+Une filtration d'un complexe simplicial \(K\) 
+est une suite de complexes simpliciaux
+\[
+K(0)\subseteq K(1) \subseteq \cdots \subseteq K(n) = K
+\] 
+\end{df}
+
+
+\red{exemple: the big grid}

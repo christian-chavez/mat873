@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{tikz-cd}
+\usetikzlibrary{fit, backgrounds} % Required libraries
+
+\begin{document}
+
+\begin{tikzcd}[
+    % 3. Draw the background after the diagram is computed
+    execute at end picture={
+        \begin{pgfonlayer}{background}
+            % Draw a fitted node around the start and end aliases
+            \node[fit=(row2start) (row2end), fill=blue!10,] {};
+        \end{pgfonlayer}
+    }
+]
+    A \arrow[r] & B \arrow[d] \\
+    % 1. Name the start of the row
+    |[alias=row2start]| C \arrow[r] 
+    & 
+    % 2. Name the end of the row
+    |[alias=row2end]| D 
+\end{tikzcd}
+
+\end{document}

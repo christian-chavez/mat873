@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{195.41574313bp}%
+    \setlength{\unitlength}{189.41573736bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,16 +50,16 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.55989668)%
+  \begin{picture}(1,0.58928835)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{cs-un-dim-trou-un-arete.pdf}}%
-    \put(0.25065747,0.52633153){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$2$\end{tabular}}}}%
-    \put(-0.00220298,0.27022779){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$1$\end{tabular}}}}%
-    \put(0.45647992,0.27135197){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$3$\end{tabular}}}}%
-    \put(0.64315804,0.21468558){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$5$\end{tabular}}}}%
+    \put(0.23484011,0.55465998){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$2$\end{tabular}}}}%
+    \put(-0.00227276,0.2904438){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$1$\end{tabular}}}}%
+    \put(0.45810693,0.28528626){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$3$\end{tabular}}}}%
+    \put(0.63977368,0.22522312){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$5$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{cs-un-dim-trou-un-arete.pdf}}%
-    \put(0.94212211,0.21468558){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$6$\end{tabular}}}}%
-    \put(0.24229033,0.00412557){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$4$\end{tabular}}}}%
+    \put(0.94028876,0.22522312){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$6$\end{tabular}}}}%
+    \put(0.23415974,0.00425625){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0.80000001}\smash{\begin{tabular}[t]{l}$4$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

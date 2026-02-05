@@ -20,6 +20,7 @@
     csquotes,
     tikz-cd,
     mathtools,
+    adjustbox,
 } 
 \geometry{margin=1.25in}
 
@@ -46,6 +47,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\F}{\mathbb{F}}
+\newcommand{\p}{\partial}
 \DeclareMathOperator{\conv}{conv}
 \DeclareMathOperator{\bd}{bd}
 \DeclareMathOperator{\spn}{span}
@@ -67,6 +69,7 @@
 \usepackage[bookmarks,hidelinks]{hyperref}
 
 \usetikzlibrary{arrows.meta}
+\usetikzlibrary{fit,backgrounds}
 
 \tikzcdset{
   arrow style=tikz,
@@ -74,10 +77,44 @@
   diagrams={
     % >={Latex[length=1mm,width=1mm]}
     % >={Triangle[length=2.6mm,width=2.2mm]},
-    >={Stealth[round]},
+    >={stealth[round]},
     % >={Kite[round]},
   }
 } 
 
+\tikzcdset{
+  zebraA/.style={fill=gray!15, inner sep=2pt, rounded corners=2pt},
+  zebraB/.style={fill=gray!10, inner sep=2pt, rounded corners=2pt}
+}
+
+
 \usepackage{myto}
 
+% bordermatrix square
+\makeatletter
+\def\sbordermatrix#1{\begingroup \m@th
+  \@tempdima 4.75\p@
+  \setbox\z@\vbox{%
+    \def\cr{\crcr\noalign{\kern2\p@\global\let\cr\endline}}%
+    \ialign{$##$\hfil\kern2\p@\kern\@tempdima&\thinspace\hfil$##$\hfil
+      &&\quad\hfil$##$\hfil\crcr
+      \omit\strut\hfil\crcr\noalign{\kern-\baselineskip}%
+      #1\crcr\omit\strut\cr}}%
+  \setbox\tw@\vbox{\unvcopy\z@\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{\unhbox\@ne\unskip\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{$\kern\wd\@ne\kern-\@tempdima\left[\kern-\wd\@ne
+    \global\setbox\@ne\vbox{\box\@ne\kern2\p@}%
+    \vcenter{\kern-\ht\@ne\unvbox\z@\kern-\baselineskip}\,\right]$}%
+  \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
+\makeatother
+
+% Source - https://tex.stackexchange.com/a/333383
+% Posted by lecarrera, modified by community. See post 'Timeline' for change history
+% Retrieved 2026-02-04, License - CC BY-SA 3.0
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
